@@ -1,0 +1,185 @@
+monitor:
+  kafka:
+    brokers: 172.16.0.76:9092
+    group: business-monitor
+    bachSize: 65536
+    lingerMs: 1
+    bufferMemory: 524288
+    autoCommitIntervalMs: 100
+    sessionTimeoutMs: 20000
+    heartbeatIntervalMs: 1500
+    autoOffsetReset: latest
+    maxPollRecords: 10
+    concurrencey: 12
+    pollTimeout: 4000
+    dataTopic: MONITOR_DATA
+    topics:
+      monitor-data: MONITOR_DATA
+      monitor-data-group: monitor
+      notify-data: NOTIFY_DATA
+  project:
+    tag: haotian
+    password: LZ@123456
+  sms:
+    syscode: XM
+    password: admin123
+    code: A201708101
+    uri: http://192.168.131.81:8081/usp-server-sysinterface/service/InsideTemplateWebservice?WSDL
+  wechat:
+    #企业Id
+    corpid: ww6d2918fb913b95b0
+    #应用私钥
+    corpsecret: IN_-BSbtQc6tIYJf89sd1Kn-Sg5oGGeoPmVnoE_Tiv4
+    #应用ID
+    agentId: 1000026
+    #获取token地址
+    accessTokenUrl: https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=CORPID&corpsecret=CORPSECRET
+    #发送消息地址
+    sendMessageUrl: https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=
+    #获取用户id地址
+    getUseridUrl: https://qyapi.weixin.qq.com/cgi-bin/user/getuserid?access_token=
+    #获取访问用户身份
+    getUserInfoUrl: https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo?access_token=ACCESS_TOKEN&code=CODE
+    #获取企业的jsapi_ticket
+    getJsapiTicketUrl: https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket?access_token=ACCESS_TOKEN
+    #获取部门列表地址(企业微信api地址)
+    getDepartmentListUrl: https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token=ACCESS_TOKEN
+    #获取部门成员详情地址(企业微信api地址)
+    getUserListUrl: https://qyapi.weixin.qq.com/cgi-bin/user/list
+spring:
+  data:
+    mongodb:
+      uri: mongodb://report:gSsbtCkjwi5fPI73HGr1UUeRGUChj45w@dds-bp152ba6eaa1bff41.mongodb.rds.aliyuncs.com:3717,dds-bp152ba6eaa1bff42.mongodb.rds.aliyuncs.com:3717/report?replicaSet=mgset-52458174
+  mail:
+    host: smtp.163.com
+    username: 'xdidilzcx@163.com'
+    password: 'EZFDLXPIATMNKHQA'
+    default-encoding: UTF-8
+    protocol: smtp
+    port: 465
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+            trust: smtp.163.com
+          socketFactory:
+            port: 465
+          port: 465
+          auth: true
+          starttls:
+            enable: true
+            required: true
+        socketFactory:
+          class: javax.net.ssl.SSLSocketFactory
+
+
+quantumtrip:
+  log-stash:
+    level: INFO
+    logHome: /data/apps/logs/monitor/
+    loggers:
+      - com.quantumtrip=DEBUG
+      - com.quantum.trip=DEBUG
+      - com.sun.mail.smtp=FINE
+      - com.quantumtrip.data.center.cache=INFO
+dataShare:
+  redis:
+    clusterEnable: false
+    host: r-bp1nt32732vv5gm2np.redis.rds.aliyuncs.com
+    #clusterNodes: r-bp1z4gzk11h1dklwv4.redis.rds.aliyuncs.com:6379
+    port: 6379
+    database: 0
+    enable: true
+    maxIdle: 50
+    maxTotal: 150
+    maxWaitMillis: 5000
+    password: 'ubAuT4g%BKLiUO3'
+    timeout: 10000
+
+cache:
+  redis:
+    clusterEnable: false
+    host: r-bp1nt32732vv5gm2np.redis.rds.aliyuncs.com
+    #clusterNodes: r-bp1z4gzk11h1dklwv4.redis.rds.aliyuncs.com:6379
+    port: 6379
+    database: 0
+    enable: true
+    maxIdle: 50
+    maxTotal: 150
+    maxWaitMillis: 5000
+    password: 'ubAuT4g%BKLiUO3'
+    timeout: 10000
+    cacheName: business-monitor
+
+restTemplateConnTimeout: 15000
+quartz:
+  datasource:
+    url: ${spring.datasource.url}
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    driver-class-name: ${spring.datasource.driver-class-name}
+dateNum: 5
+days: 20
+# traceUrl: http://172.20.68.201:8083/trace
+feign:
+  httpclient:
+    enabled: true
+
+swagger:
+  enable: true
+  title: 监控平台标准API
+  description: 监控平台标准API
+  groups:
+    v1: com.quantumtrip.bussiness.monitor.analyzer.controller
+  ignoreGlobalHeaderHttpPaths:
+    token:
+      - path: /v2/operator/login
+        method: GET
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+logSize: 20
+host: -test
+syncTimeValue: 60000
+
+xxl:
+  job:
+    accessToken:
+    admin:
+      ### 调度中心部署跟地址 [选填]：如调度中心集群部署存在多个地址则用逗号分隔。执行器将会使用该地址进行"执行器心跳注册"和"任务结果回调"；为空则关闭自动注册；
+      addresses: http://172.16.178.228:5050/xxl-job-admin
+    executor:
+      ### 执行器AppName [选填]：执行器心跳注册分组依据；为空则关闭自动注册
+      appname: business-monitor
+      ### 执行器端口号 [选填]：小于等于0则自动获取；默认端口为9999，单机部署多个执行器时，注意要配置不同执行器端口；
+      port: 9999
+      ip:
+      address:
+      ### 执行器运行日志文件存储磁盘路径 [选填] ：需要对该路径拥有读写权限；为空则使用默认路径；
+      logpath: /data/apps/logs/pangu-job
+      ### 执行器日志保存天数 [选填] ：值大于3时生效，启用执行器Log文件定期清理功能，否则不生效；
+      logretentiondays: 10
+
+theadpool:
+  corePoolSize: 150
+  maxPoolSize: 250
+  blockQueueSize: 2000
+
+passport:
+  excludes:
+    - /v2/operator/login
+  authToken: d6NRqgOkiT6pwF7x
+
+webUrl: 'http://dh5.quantum-trip.com/monitor-web'
+
+lock:
+  retry-times: 300
+  sleep-millis: 200
+  default-expire-ms: 60000

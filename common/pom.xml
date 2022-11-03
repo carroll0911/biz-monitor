@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>biz-monitor</artifactId>
+        <groupId>com.carroll0911</groupId>
+        <version>1.1.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>biz-monitor-common</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${com.alibaba.fastjson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.carroll0911</groupId>
+            <artifactId>carroll-spring-rest-starter</artifactId>
+            <version>${carroll-spring-rest-starter}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.carroll0911</groupId>
+            <artifactId>carroll-spring-cache</artifactId>
+            <version>${carroll-spring-cache}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.quantumtrip</groupId>-->
+<!--            <artifactId>ida-data-share</artifactId>-->
+<!--            <version>${ida}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.quantumtrip</groupId>-->
+<!--            <artifactId>ida-core</artifactId>-->
+<!--            <version>${ida}</version>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>com.quantumtrip</groupId>-->
+<!--            <artifactId>ida-util</artifactId>-->
+<!--            <version>${ida-util}</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${jsr305}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.quantumtrip</groupId>-->
+<!--            <artifactId>ida-cache</artifactId>-->
+<!--            <version>${ida}</version>-->
+<!--        </dependency>-->
+    </dependencies>
+</project>

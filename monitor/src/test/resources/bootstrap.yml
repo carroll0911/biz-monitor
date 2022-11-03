@@ -1,0 +1,10 @@
+spring:
+    application:
+        name: analyzer
+
+server:
+    port: 8888
+
+endpoints:
+    shutdown:
+        enabled: true #启用shutdown

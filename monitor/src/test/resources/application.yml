@@ -1,0 +1,109 @@
+monitor:
+    kafka:
+        brokers: 172.20.68.113:19092,172.20.68.115:19092
+        group: businessMonitor
+        bachSize: 65536
+        lingerMs: 1
+        bufferMemory: 524288
+        autoCommitIntervalMs: 100
+        sessionTimeoutMs: 7500
+        heartbeatIntervalMs: 1500
+        autoOffsetReset: latest
+        maxPollRecords: 20
+        concurrencey: 12
+        pollTimeout: 4000
+    project:
+        tag: c3
+        password: TIMA#c3
+
+spring:
+    datasource:
+       platform: h2
+       #schema: classpath:test-schema.sql
+       initialize: true
+#       data: classpath:test-data.sql
+       sql-script-encoding: UTF-8
+       url: jdbc:h2:file:~/.h2/monitor;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+       username: sa
+       password: sa
+       driver-class-name: org.h2.Driver
+
+    jpa:
+        generate-ddl: true
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: create
+        show-sql: true
+    data:
+        mongodb:
+            uri: mongodb://monitor:123456@172.20.68.90:27017/businessMonitor
+
+    mail:
+        host: smtp.timanetworks.com
+        username: c3_operation_mgr
+        password: IOdytPhQ
+        default-encoding: UTF-8
+        properties:
+        mail.smtp.auth: true
+        protocol: smtp
+        port: 25
+
+quartz:
+    datasource:
+        url: jdbc:h2:file:~/.h2/monitor;DB_CLOSE_ON_EXIT=FALSE
+        username: sa
+        password: sa
+        driver-class-name: org.h2.Driver
+
+restTemplateConnTimeout: 15000
+
+dateNum: 5
+
+days: 30
+
+
+dataShare:
+    redis:
+        enable: true
+        host: 172.20.68.101
+        port: 6379
+        password: 123456
+        database: 3
+        timeout: 10000
+        maxWaitMillis: -1
+        maxTotal: 100
+        maxIdle: 10
+
+cache:
+    redis:
+        enable: true
+        host: 172.20.68.101
+        port: 6379
+        password: 123456
+        database: 4
+        timeout: 10000
+        maxWaitMillis: -1
+        maxTotal: 100
+        maxIdle: 10
+        defaultExpiration: 3600
+        cacheName: business-monitor
+
+feign:
+    httpclient:
+        enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+
+logSize: 20
+
+host: -UT
+
+# 时间同步监控阈值60s
+syncTimeValue: 60000
