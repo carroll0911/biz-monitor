@@ -40,7 +40,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.quantumtrip</groupId>
+            <groupId>com.carroll0911</groupId>
             <artifactId>monitorCommon</artifactId>
             <version>${project.version}</version>
         </dependency>

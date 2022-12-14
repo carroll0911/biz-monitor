@@ -7,7 +7,7 @@ package com.carroll.biz.monitor.analyzer.auth;
 public class UserTokenEntity {
 
     //用户ID
-    private Long userId;
+    private String userId;
 
     //电话号码
     private String phone;
@@ -15,11 +15,11 @@ public class UserTokenEntity {
     //token创建时间
     private long tokenCreatedTime;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

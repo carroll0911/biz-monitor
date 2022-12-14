@@ -1,6 +1,6 @@
 monitor:
   kafka:
-    brokers: 172.16.0.76:9092
+    brokers: 127.0.0.1:9092
     group: business-monitor
     bachSize: 65536
     lingerMs: 1
@@ -18,8 +18,8 @@ monitor:
       monitor-data-group: monitor
       notify-data: NOTIFY_DATA
   project:
-    tag: haotian
-    password: LZ@123456
+    tag: test_project
+    password: 2u3SZtFzK6
   sms:
     syscode: XM
     password: admin123
@@ -49,7 +49,7 @@ monitor:
 spring:
   data:
     mongodb:
-      uri: mongodb://report:gSsbtCkjwi5fPI73HGr1UUeRGUChj45w@dds-bp152ba6eaa1bff41.mongodb.rds.aliyuncs.com:3717,dds-bp152ba6eaa1bff42.mongodb.rds.aliyuncs.com:3717/report?replicaSet=mgset-52458174
+      uri: mongodb://monitor:monitor@127.0.0.1:27017/monitor
   mail:
     host: smtp.163.com
     username: 'xdidilzcx@163.com'
@@ -100,7 +100,7 @@ dataShare:
 cache:
   redis:
     clusterEnable: false
-    host: r-bp1nt32732vv5gm2np.redis.rds.aliyuncs.com
+    host: 127.0.0.1
     #clusterNodes: r-bp1z4gzk11h1dklwv4.redis.rds.aliyuncs.com:6379
     port: 6379
     database: 0
@@ -108,7 +108,7 @@ cache:
     maxIdle: 50
     maxTotal: 150
     maxWaitMillis: 5000
-    password: 'ubAuT4g%BKLiUO3'
+    password: 123456
     timeout: 10000
     cacheName: business-monitor
 
@@ -175,6 +175,7 @@ theadpool:
 passport:
   excludes:
     - /v2/operator/login
+    - /test/test-send
   authToken: d6NRqgOkiT6pwF7x
 
 webUrl: 'http://dh5.quantum-trip.com/monitor-web'

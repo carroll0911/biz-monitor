@@ -5,6 +5,7 @@ import com.carroll.biz.monitor.analyzer.service.IMonitorItemService;
 import com.carroll.biz.monitor.analyzer.service.ITestService;
 import com.carroll.biz.monitor.analyzer.service.IWarningDataService;
 import com.carroll.biz.monitor.analyzer.service.impl.SmsWsClient;
+import com.carroll.biz.monitor.collector.component.DataSender;
 import com.carroll.biz.monitor.common.response.MonitorBaseResponse;
 import com.carroll.spring.rest.starter.BaseController;
 import io.swagger.annotations.Api;
@@ -36,6 +37,8 @@ public class TestController extends BaseController {
     private IWarningDataService warningDataService;
     @Autowired
     private SimpMessagingTemplate template;
+    @Autowired
+    private DataSender dataSender;
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String test(@RequestParam("n") int n) {
@@ -62,7 +65,9 @@ public class TestController extends BaseController {
 
     @RequestMapping(value = "sendToC3", method = RequestMethod.POST)
     public String sendToC3(@RequestBody MonitorItem item) {
-        template.convertAndSend("/topic/c3",new HashMap(){{put("data","test");}});
+        template.convertAndSend("/topic/c3", new HashMap() {{
+            put("data", "test");
+        }});
         return "SUCCESS";
     }
 
@@ -70,6 +75,12 @@ public class TestController extends BaseController {
     public String resendJob() {
         warningDataService.resendData();
         return "SUCCESS";
+    }
+
+    @GetMapping("test-send")
+    public String testSend() {
+        dataSender.send("test-tag1", false);
+        return "";
     }
 
 

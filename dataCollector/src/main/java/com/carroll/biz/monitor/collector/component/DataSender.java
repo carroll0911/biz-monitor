@@ -2,9 +2,9 @@ package com.carroll.biz.monitor.collector.component;
 
 import com.alibaba.fastjson.JSON;
 import com.carroll.biz.monitor.collector.config.ProjectConfig;
-import com.quantumtrip.bussiness.monitor.data.common.dto.KafkaTopic;
-import com.quantumtrip.bussiness.monitor.data.common.dto.MonitorData;
-import com.quantumtrip.bussiness.monitor.data.common.utils.PasswordUtils;
+import com.carroll.biz.monitor.data.common.dto.KafkaTopic;
+import com.carroll.biz.monitor.data.common.dto.MonitorData;
+import com.carroll.biz.monitor.data.common.utils.PasswordUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

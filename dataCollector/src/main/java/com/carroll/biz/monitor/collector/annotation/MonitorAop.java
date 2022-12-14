@@ -2,7 +2,7 @@ package com.carroll.biz.monitor.collector.annotation;
 
 import com.carroll.biz.monitor.collector.component.DataSender;
 import com.carroll.biz.monitor.collector.component.SendFlagHolder;
-import com.quantumtrip.bussiness.monitor.data.common.utils.ParseUtils;
+import com.carroll.biz.monitor.data.common.utils.ParseUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

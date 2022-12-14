@@ -83,12 +83,12 @@ public class UserTokenUtils {
         UserTokenEntity tokenModel = parseToken(token);
         if (tokenModel != null) {
             String tokenPhone = tokenModel.getPhone();
-            Long tokenUserId = tokenModel.getUserId();
+            String tokenUserId = tokenModel.getUserId();
             long tokenTime = tokenModel.getTokenCreatedTime();
 
             if (tokenMessage == null) return false;
             UserTokenEntity userTokenEntity = parseToken(tokenMessage.getToken());
-            Long redisUserId = userTokenEntity.getUserId();
+            String redisUserId = userTokenEntity.getUserId();
             String redisPhone = userTokenEntity.getPhone();
             long redisTime = userTokenEntity.getTokenCreatedTime();
 
@@ -122,8 +122,8 @@ public class UserTokenUtils {
         jwe.setKey(getKey());
         jwe.setCompactSerialization(token);
         JwtClaims claims = JwtClaims.parse(jwe.getPayload());
-        entity.setUserId((Long) claims.getClaimValue("userId"));
-        entity.setPhone(claims.getClaimValue("phone").toString());
+        entity.setUserId((String) claims.getClaimValue("userId"));
+        entity.setPhone((String)claims.getClaimValue("phone"));
         entity.setTokenCreatedTime(Long.parseLong(claims.getClaimValue("tokenCreatedTime").toString()));
         tokenHolder.set(entity);
         return entity;
